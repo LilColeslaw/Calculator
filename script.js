@@ -2,6 +2,9 @@ let add = (a, b) => a + b;
 let subtract = (a, b) => a - b;
 let multiply = (a, b) => a * b;
 let divide = (a, b) => a / b;
+let display = document.querySelector(".display");
+let clearButton = document.querySelector(".clear");
+clearButton.addEventListener("click", clearDisplay);
 
 function operate(a, b, operator) {
     let result;
@@ -21,3 +24,6 @@ function operate(a, b, operator) {
     }
     return result;
 }
+
+let addToDisplay = characters => display.textContent += `${characters}`;
+function clearDisplay() { display.textContent = "";}
