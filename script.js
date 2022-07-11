@@ -41,8 +41,14 @@ function operate(a, b, operator) {
 
 function digitClick(event) {
     addToDisplay(event.target.textContent);
-    let num = parseFloat(event.target.textContent);
-    firstNumber ? secondNumber = num : firstNumber = num;
+    let displayText = display.textContent;
+    //is there an operator yet? if not -> add to display the number and update firstNumber to be the display textContent
+    if (!operator) {
+        firstNumber = parseFloat(displayText);
+    } else {
+        secondNumber = secondNumber ? parseFloat(displayText.slice(displayText.length - (secondNumber.toString().length + 1))) : parseFloat(event.target.textContent);
+    }
+    //if there is-> addToDisplay the number, see how many characters long secondNumber is and update it to be the last 1 more than that characters in the display
 }
 function operatorClick(event) {
     addToDisplay(event.target.textContent);
@@ -52,10 +58,16 @@ function operatorClick(event) {
 function equalsClick(event) {
     let result = operate(firstNumber, secondNumber, operator);
     clearDisplay();
-    firstNumber = 0;
-    secondNumber = 0;
+    firstNumber = result;
+    secondNumber = null;
+    operator = null;
     addToDisplay(result);
 }
 
 let addToDisplay = characters => display.textContent += characters;
-function clearDisplay() { display.textContent = "";}
+function clearDisplay() { 
+    display.textContent = "";
+    operator = null;
+    firstNumber = null;
+    secondNumber = null;
+}
