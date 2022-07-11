@@ -7,6 +7,10 @@ let subtract = (a, b) => a - b;
 let multiply = (a, b) => a * b;
 let divide = (a, b) => a / b;
 let display = document.querySelector(".display");
+
+let equals = document.querySelector(".equals");
+equals.addEventListener("click", equalsClick);
+
 let clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", clearDisplay);
 
@@ -19,16 +23,16 @@ operators.forEach(operator => operator.addEventListener("click", operatorClick))
 function operate(a, b, operator) {
     let result;
     switch (operator) {
-        case "+":
+        case "\uFF0B":
             result = add(a, b);
             break;
-        case "-":
+        case "\u2212":
             result = subtract(a, b);
             break;
-        case "*":
+        case "\u00D7":
             result = multiply(a, b);
             break;
-        case "/":
+        case "\u00F7":
             result = divide(a, b);
             break;
     }
@@ -43,6 +47,14 @@ function digitClick(event) {
 function operatorClick(event) {
     addToDisplay(event.target.textContent);
     operator = event.target.textContent;
+}
+
+function equalsClick(event) {
+    let result = operate(firstNumber, secondNumber, operator);
+    clearDisplay();
+    firstNumber = 0;
+    secondNumber = 0;
+    addToDisplay(result);
 }
 
 let addToDisplay = characters => display.textContent += characters;
