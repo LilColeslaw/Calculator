@@ -8,11 +8,18 @@
     grid-column-start: span 3;
 }
 .display {
-    text-align: right;
     font-size: 8em;
     font-family: 'Roboto', sans-serif;
-    border-radius: .5em;
+
+}
+
+.hold-display {
+    display: flex;
+    align-items: center;
+    border-radius: .75em;
     background-color: grey;
+    justify-content: right;
+    padding: 0 2em;
 }
 
 .body {
