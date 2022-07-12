@@ -3,7 +3,7 @@
     grid-template-columns: auto auto auto auto;
 }
 .clear {
-    grid-column-start: span 4;
+    grid-column-start: span 3;
 }
 .display {
     text-align: right;
