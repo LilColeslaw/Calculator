@@ -20,6 +20,12 @@ digits.forEach((digit) => digit.addEventListener("click", digitClick));
 let operators = document.querySelectorAll(".operator");
 operators.forEach(operator => operator.addEventListener("click", operatorClick))
 
+let buttons = document.querySelectorAll("button");
+buttons.forEach((btn) => {
+    btn.addEventListener("mouseover", (event) => event.target.style.backgroundColor = "#C5E5FB");
+    btn.addEventListener("mouseleave", (event) => event.target.style.backgroundColor = "#1385c7")
+});
+
 function operate(a, b, operator) {
     let result;
     switch (operator) {
