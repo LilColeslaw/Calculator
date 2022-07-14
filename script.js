@@ -1,12 +1,11 @@
-let firstNumber;
-let secondNumber;
-let operator;
-
 let add = (a, b) => a + b;
 let subtract = (a, b) => a - b;
 let multiply = (a, b) => a * b;
 let divide = (a, b) => a / b;
 let display = document.querySelector(".display");
+
+let clickers = document.querySelectorAll(".display-it");
+clickers.forEach(click => click.addEventListener("click", event => addToDisplay(event.target.textContent)));
 
 let equals = document.querySelector(".equals");
 equals.addEventListener("click", equalsClick);
@@ -14,16 +13,10 @@ equals.addEventListener("click", equalsClick);
 let clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", clearDisplay);
 
-let digits = document.querySelectorAll(".digit");
-digits.forEach((digit) => digit.addEventListener("click", digitClick));
-
-let operators = document.querySelectorAll(".operator");
-operators.forEach(operator => operator.addEventListener("click", operatorClick))
-
 let buttons = document.querySelectorAll("button");
 buttons.forEach((btn) => {
     btn.addEventListener("mouseover", (event) => event.target.style.backgroundColor = "#C5E5FB");
-    btn.addEventListener("mouseleave", (event) => event.target.style.backgroundColor = "#1385c7")
+    btn.addEventListener("mouseleave", (event) => event.target.style.backgroundColor = "#1385c7");
 });
 
 function operate(a, b, operator) {
@@ -45,28 +38,22 @@ function operate(a, b, operator) {
     return result;
 }
 
-function digitClick(event) {
-    addToDisplay(event.target.textContent);
-    let displayText = display.textContent;
-    //is there an operator yet? if not -> add to display the number and update firstNumber to be the display textContent
-    if (!operator) {
-        firstNumber = parseFloat(displayText);
-    } else {
-        secondNumber = secondNumber ? parseFloat(displayText.slice(displayText.length - (secondNumber.toString().length + 1))) : parseFloat(event.target.textContent);
-    }
-    //if there is-> addToDisplay the number, see how many characters long secondNumber is and update it to be the last 1 more than that characters in the display
-}
-function operatorClick(event) {
-    addToDisplay(event.target.textContent);
-    operator = event.target.textContent;
-}
-
 function equalsClick(event) {
-    let result = operate(firstNumber, secondNumber, operator);
+    let parts = display.textContent;
+    let operator = parts
+            .split("")
+            .filter(part => part === "\u00F7" || part === "\u00D7" || part === "\u2212" || part === "\uFF0B");
+            //first split it into each character
+            //then do filter and see if it is equal to one of the operators 
+            //it will return just that character in the end
+    operator = operator.join(""); //makes operator a string so that the other parts of the code will work (the operate() function)
+    //now split parts by the operator
+    parts = parts.split(operator); //now the first element will be the first number, and the second will be the second number (in strings)
+    let numberOne = parseFloat(parts[0]);
+    let numberTwo = parseFloat(parts[1]);
+
+    let result = operate(numberOne, numberTwo, operator);
     clearDisplay();
-    firstNumber = result;
-    secondNumber = null;
-    operator = null;
     addToDisplay(result);
 }
 
