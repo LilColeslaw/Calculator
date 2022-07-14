@@ -4,6 +4,9 @@ let multiply = (a, b) => a * b;
 let divide = (a, b) => a / b;
 let display = document.querySelector(".display");
 
+let negate = document.querySelector(".negate");
+negate.addEventListener("click", negateIt);
+
 let clickers = document.querySelectorAll(".display-it");
 clickers.forEach(click => click.addEventListener("click", event => addToDisplay(event.target.textContent)));
 
@@ -63,4 +66,14 @@ function clearDisplay() {
     operator = null;
     firstNumber = null;
     secondNumber = null;
+}
+
+function negateIt() {
+    //go backwards through the text of display, waiting to see if there is an operator
+    //if there is one, store its index in the string
+    //if there isn't, set that index to be 0 and insert the negative sign there
+    let text = display.textContent;
+    let split = text.split("");//make an array
+    let index = split.findIndex(char => char === "\u00F7" || char === "\u00D7" || char === "\u2212" || char === "\uFF0B");
+    index ? display.textContent = text.substring(0, index + 1) + "\u2212" + text.substring(index + 1) : display.textContent = "\u2212" + text;
 }
