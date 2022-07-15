@@ -13,12 +13,6 @@ equals.addEventListener("click", equalsClick);
 let clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", clearDisplay);
 
-let buttons = document.querySelectorAll("button");
-buttons.forEach((btn) => {
-    btn.addEventListener("mouseover", (event) => event.target.style.backgroundColor = "#C5E5FB");
-    btn.addEventListener("mouseleave", (event) => event.target.style.backgroundColor = "#1385c7");
-});
-
 function operate(a, b, operator) {
     let result;
     switch (operator) {

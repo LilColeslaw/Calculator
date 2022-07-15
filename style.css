@@ -52,3 +52,14 @@ button {
 .zero {
     grid-column-start: span 2;
 }
+
+.operator {
+    background-color: #673ADA;
+}
+
+button:hover {
+    background-color: #C5E5FB;
+}
+.operator:hover {
+    background-color: #fbedff;
+}
