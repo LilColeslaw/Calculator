@@ -49,5 +49,6 @@ button {
     padding: 0;
 }
 
-
-
+.zero {
+    grid-column-start: span 2;
+}
