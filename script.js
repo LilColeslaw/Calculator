@@ -3,9 +3,16 @@ let subtract = (a, b) => a - b;
 let multiply = (a, b) => a * b;
 let divide = (a, b) => a / b;
 let display = document.querySelector(".display");
+display.textContent = "0";
+let firstNumber;
+let secondNumber;
+let operator;
 
 let clickers = document.querySelectorAll(".display-it");
-clickers.forEach(click => click.addEventListener("click", event => addToDisplay(event.target.textContent)));
+clickers.forEach(click => click.addEventListener("click", numClick));
+
+let operators = document.querySelectorAll(".operator");
+operators.forEach(operator => operator.addEventListener("click", operatorClick));
 
 let equals = document.querySelector(".equals");
 equals.addEventListener("click", equalsClick);
@@ -33,28 +40,34 @@ function operate(a, b, operator) {
 }
 
 function equalsClick(event) {
-    let parts = display.textContent;
-    let operator = parts
-            .split("")
-            .filter(part => part === "\u00F7" || part === "\u00D7" || part === "\u2212" || part === "\uFF0B");
-            //first split it into each character
-            //then do filter and see if it is equal to one of the operators 
-            //it will return just that character in the end
-    operator = operator.join(""); //makes operator a string so that the other parts of the code will work (the operate() function)
-    //now split parts by the operator
-    parts = parts.split(operator); //now the first element will be the first number, and the second will be the second number (in strings)
-    let numberOne = parseFloat(parts[0]);
-    let numberTwo = parseFloat(parts[1]);
-
-    let result = operate(numberOne, numberTwo, operator);
+    let theOperator = operator.textContent;
+    let result = operate(firstNumber, secondNumber, theOperator);
+    operator.style.backgroundColor = "#673ADA";
     clearDisplay();
-    addToDisplay(result);
-}
-
-let addToDisplay = characters => display.textContent += characters;
-function clearDisplay() { 
-    display.textContent = "";
     operator = null;
     firstNumber = null;
     secondNumber = null;
+    display.textContent = result;
+}
+
+function numClick(event) {
+    if (!operator) {
+        display.textContent += event.target.textContent;
+        firstNumber = parseFloat(display.textContent);
+    } else {
+        if (!secondNumber) {
+            clearDisplay();
+        }
+        display.textContent += event.target.textContent;
+        secondNumber = parseFloat(display.textContent);
+    }
+}
+
+function clearDisplay() { 
+    display.textContent = "";
+}
+
+function operatorClick(event) {
+    operator = event.target;
+    operator.style.backgroundColor =  "#fbedff";
 }
