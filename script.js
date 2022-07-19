@@ -3,7 +3,7 @@ let subtract = (a, b) => a - b;
 let multiply = (a, b) => a * b;
 let divide = (a, b) => a / b;
 let display = document.querySelector(".display");
-display.textContent = "0";
+clearDisplay()
 let firstNumber;
 let secondNumber;
 let operator;
@@ -40,6 +40,8 @@ function operate(a, b, operator) {
 }
 
 function equalsClick(event) {
+    if (!firstNumber) firstNumber = 0; //if there was no firstNumber set it equal to 0
+    if (!secondNumber) return; //if there is no secondNumber return so that the user can enter a number before hitting "="
     let theOperator = operator.textContent;
     let result = operate(firstNumber, secondNumber, theOperator);
     operator.style.backgroundColor = "#673ADA";
@@ -51,12 +53,15 @@ function equalsClick(event) {
 }
 
 function numClick(event) {
-    if (!operator) {
+    if (display.textContent === "0") {// get rid of the 0 which is there by default
+        display.textContent = "";
+    }
+    if (!operator) { //if there is no operator yet update the firstNumber
         display.textContent += event.target.textContent;
         firstNumber = parseFloat(display.textContent);
-    } else {
-        if (!secondNumber) {
-            clearDisplay();
+    } else { //otherwise update the secondNumber
+        if (!secondNumber) {//if it is the first typing of the secondNumber clear the firstNumber off first
+            display.textContent = "";
         }
         display.textContent += event.target.textContent;
         secondNumber = parseFloat(display.textContent);
@@ -64,7 +69,7 @@ function numClick(event) {
 }
 
 function clearDisplay() { 
-    display.textContent = "";
+    display.textContent = "0";
 }
 
 function operatorClick(event) {
