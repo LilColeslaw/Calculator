@@ -3,7 +3,6 @@ let subtract = (a, b) => a - b;
 let multiply = (a, b) => a * b;
 let divide = (a, b) => a / b;
 let display = document.querySelector(".display");
-clearDisplay()
 let firstNumber;
 let secondNumber;
 let operator;
@@ -20,6 +19,7 @@ equals.addEventListener("click", equalsClick);
 let clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", clearDisplay);
 
+clearDisplay();
 function operate(a, b, operator) {
     let result;
     switch (operator) {
@@ -70,9 +70,13 @@ function numClick(event) {
 
 function clearDisplay() { 
     display.textContent = "0";
+    if (operator) operator.style.backgroundColor = "#673ADA";
 }
 
 function operatorClick(event) {
+    if (operator) return;
     operator = event.target;
     operator.style.backgroundColor =  "#fbedff";
 }
+
+//reset operator backgrounds on clear
