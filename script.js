@@ -47,9 +47,9 @@ function equalsClick(event) {
     operator.style.backgroundColor = "#673ADA";
     clearDisplay();
     operator = null;
-    firstNumber = null;
     secondNumber = null;
-    display.textContent = result;
+    display.textContent = result; 
+    firstNumber = parseFloat(display.textContent); //get it ready to use the result in the next operation
 }
 
 function numClick(event) {
