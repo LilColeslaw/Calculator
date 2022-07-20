@@ -19,6 +19,9 @@ equals.addEventListener("click", equalsClick);
 let clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", clearDisplay);
 
+let negateButton = document.querySelector(".plusorminus");
+negateButton.addEventListener("click", negate);
+
 clearDisplay();
 function operate(a, b, operator) {
     let result;
@@ -81,4 +84,11 @@ function operatorClick(event) {
     operator.style.backgroundColor =  "#fbedff";
 }
 
-//reset operator backgrounds on clear
+function negate() {
+    if (secondNumber) {
+        secondNumber *= -1;
+    } else if (firstNumber) {
+        firstNumber *= -1;
+    }
+    display.textContent = "\u2212" + display.textContent;
+}
