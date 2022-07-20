@@ -39,7 +39,7 @@ function operate(a, b, operator) {
     return result;
 }
 
-function equalsClick(event) {
+function equalsClick() {
     if (!firstNumber) firstNumber = 0; //if there was no firstNumber set it equal to 0
     if (!secondNumber) return; //if there is no secondNumber return so that the user can enter a number before hitting "="
     let theOperator = operator.textContent;
@@ -74,7 +74,9 @@ function clearDisplay() {
 }
 
 function operatorClick(event) {
-    if (operator) return;
+    if (operator && secondNumber) { //make it immediately transition to the next operation if the first one has been completed without using equals button
+        equalsClick();
+    } else if (operator) return;
     operator = event.target;
     operator.style.backgroundColor =  "#fbedff";
 }
