@@ -61,8 +61,8 @@ function equalsClick() {
 
 function numClick(event) {
     if (display.textContent === "0") {
-        if (!(event.target.textContent === ".")) display.textContent = "";// get rid of the 0 which is there by default unless the user wants a small decimal
         if (event.target.textContent === "0") return;//if the user is typing in multiple zeros don't show them all
+        if (!(event.target.textContent === ".")) display.textContent = "";// get rid of the 0 which is there by default unless the user wants a small decimal
     }
     if (event.target.textContent === "." && display.textContent.includes(".")) return;
     if (!operator) { //if there is no operator yet update the firstNumber
