@@ -3,9 +3,9 @@ let subtract = (a, b) => a - b;
 let multiply = (a, b) => a * b;
 let divide = (a, b) => a / b;
 let display = document.querySelector(".display");
-let firstNumber;
-let secondNumber;
-let operator;
+let firstNumber = null;
+let secondNumber = null;
+let operator = null;
 
 let clickers = document.querySelectorAll(".display-it");
 clickers.forEach(click => click.addEventListener("click", numClick));
