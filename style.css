@@ -14,13 +14,14 @@
     overflow: hidden;
     text-overflow: "";
     text-align: right;
+    color: white;
 }
 
 .hold-display {
     display: flex;
     align-items: center;
     border-radius: .75em;
-    background-color: grey;
+    background-color: #002500;
     padding-right: 2em;
     padding-left: 2em;
     justify-content: right;
@@ -29,15 +30,16 @@
 
 .body {
     display: grid;
-    height: 100vh;
-    width: 50vw;
-    margin: auto;
+    height: 95vh;
+    width: 40vw;
+    margin: 20px auto;
     grid-template-rows: 1fr 3fr;
-    background-color: #15107b;
-    padding: 10px;
+    background-color: #2292A4;
+    padding: 20px;
     -moz-box-sizing:border-box;
     box-sizing: border-box;
     gap: 2vh;
+    border-radius: 1em;
 }
 
 body {
@@ -47,23 +49,17 @@ body {
 button {
     font-size: 3.2em;
     font-family: 'Roboto', sans-serif;
-    background-color: #1385c7;
-    border-radius: 2em;
+    background-color: #90f1ef;
+    border-radius: 0.5em;
     border-width: 0;
     padding: 0;
 }
 
 .operator {
-    background-color: #673ADA;
+    background-color: #FC7753;
 }
 
 button:hover {
-    background-color: #C5E5FB;
-}
-.operator:hover {
-    background-color: #fbedff;
+    background-color: white;
 }
 
-.equals {
-    background-color: #673ADA;
-}

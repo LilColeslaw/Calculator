@@ -47,7 +47,7 @@ function equalsClick() {
     if (!secondNumber) return; //if there is no secondNumber return so that the user can enter a number before hitting "="
     let theOperator = operator.textContent;
     let result = operate(firstNumber, secondNumber, theOperator);
-    operator.style.backgroundColor = "#673ADA";
+    operator.style.backgroundColor = "#FC7753";
     clearDisplay();
     operator = null;
     secondNumber = null;
@@ -56,9 +56,8 @@ function equalsClick() {
 }
 
 function numClick(event) {
-    if (display.textContent )
     if (display.textContent === "0") {
-        if (!event.target.textContent === ".") display.textContent = "";// get rid of the 0 which is there by default unless the user wants a small decimal
+        if (!(event.target.textContent === ".")) display.textContent = "";// get rid of the 0 which is there by default unless the user wants a small decimal
         if (event.target.textContent === "0") return;//if the user is typing in multiple zeros don't show them all
     }
     if (!operator) { //if there is no operator yet update the firstNumber
@@ -75,7 +74,7 @@ function numClick(event) {
 
 function clearDisplay() { 
     display.textContent = "0";
-    if (operator) operator.style.backgroundColor = "#673ADA";
+    if (operator) operator.style.backgroundColor = "#FC7753";
 }
 
 function operatorClick(event) {
@@ -83,7 +82,7 @@ function operatorClick(event) {
         equalsClick();
     } else if (operator) return;
     operator = event.target;
-    operator.style.backgroundColor =  "#fbedff";
+    operator.style.backgroundColor =  "white";
 }
 
 function negate() {
