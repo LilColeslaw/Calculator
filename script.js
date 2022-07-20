@@ -91,5 +91,5 @@ function negate() {
     } else if (firstNumber) {
         firstNumber *= -1;
     }
-    display.textContent = "\u2212" + display.textContent;
+    display.textContent.includes("-") ? display.textContent = display.textContent.replace("-", "") : display.textContent = "-" + display.textContent;
 }
