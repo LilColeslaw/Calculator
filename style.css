@@ -59,6 +59,10 @@ button {
     background-color: #FC7753;
 }
 
+.equals {
+    background-color: #FC7753;
+}
+
 button:hover {
     background-color: white;
 }
