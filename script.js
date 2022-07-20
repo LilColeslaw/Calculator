@@ -17,7 +17,7 @@ let equals = document.querySelector(".equals");
 equals.addEventListener("click", equalsClick);
 
 let clearButton = document.querySelector(".clear");
-clearButton.addEventListener("click", clearDisplay);
+clearButton.addEventListener("click", clearAll);
 
 let negateButton = document.querySelector(".plusorminus");
 negateButton.addEventListener("click", negate);
@@ -69,8 +69,10 @@ function numClick(event) {
         display.textContent += event.target.textContent;
         firstNumber = parseFloat(display.textContent);
     } else { //otherwise update the secondNumber
-        if (!secondNumber) {//if it is the first typing of the secondNumber clear the firstNumber off first
-            display.textContent = "";
+        if (secondNumber === null) {//if it is the first typing of the secondNumber clear the firstNumber off first
+            if (event.target.textContent === ".") {
+                display.textContent = "0"; //get a zero before the "."
+            } else {display.textContent = "";}//otherwise clear
         }
         display.textContent += event.target.textContent;
         secondNumber = parseFloat(display.textContent);
@@ -97,4 +99,15 @@ function negate() {
         firstNumber *= -1;
     }
     display.textContent.includes("-") ? display.textContent = display.textContent.replace("-", "") : display.textContent = "-" + display.textContent;
+}
+
+function clearVariables() {
+    firstNumber = null;
+    secondNumber = null;
+    operator = null;
+}
+
+function clearAll() {
+    clearDisplay();
+    clearVariables();
 }
