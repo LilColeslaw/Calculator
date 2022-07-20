@@ -44,8 +44,12 @@ function operate(a, b, operator) {
 
 function equalsClick() {
     if (!firstNumber) firstNumber = 0; //if there was no firstNumber set it equal to 0
-    if (!secondNumber) return; //if there is no secondNumber return so that the user can enter a number before hitting "="
+    if (typeof secondNumber === null) return; //if there is no secondNumber return so that the user can enter a number before hitting "="
     let theOperator = operator.textContent;
+    if (theOperator === "\u00F7" && secondNumber === 0) { //no division by zero!
+        alert("Can't divide by zero buddy");
+        return;
+    }
     let result = operate(firstNumber, secondNumber, theOperator);
     operator.style.backgroundColor = "#FC7753";
     clearDisplay();
